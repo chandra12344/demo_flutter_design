@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:chewie/chewie.dart';
+import 'package:video_player/video_player.dart';
 
 void main() {
   runApp(const MyApp());
@@ -70,62 +72,81 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Positioned.fill(
                   child: Image.network(
-                    'https://upload.wikimedia.org/wikipedia/commons/0/06/India_Gate_%2CDelhi_%2C_India.jpg',
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzSiQcA8RC6dZyCw342nGPoIKVp3JbawfEdw&usqp=CAU',
                     // Replace with your image URL
                     fit: BoxFit.cover,
                   ),
                 ),
-                 Positioned(
+                Positioned(
                   bottom: 16.0,
                   left: 16.0,
-                  child: Column(
-                    children:  [
-                      const Text(
-                        'Eiffel Tower',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            Icons.location_on_outlined, // Replace with your desired icon
-                            color: Colors.white, // Replace with your desired icon color
-                          ),
-                          SizedBox(width: 8), // Add some space between the icon and text
-                          Text(
-                            'Paris France',
-                            style: TextStyle(fontSize: 14,color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  top: 20.0,
-                  left: 16.0,
                   child: SizedBox(
-                        width: MediaQuery.of(context).size.height,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      crossAxisAlignment: check
+                          ? CrossAxisAlignment.start
+                          : CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Eiffel Tower',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: check
+                              ? MainAxisAlignment.start
+                              : MainAxisAlignment.center,
                           children: const [
                             Icon(
-                              Icons.location_on_outlined, // Replace with your desired icon
-                              color: Colors.white, // Replace with your desired icon color
+                              Icons.location_on_outlined,
+                              // Replace with your desired icon
+                              color: Colors
+                                  .white, // Replace with your desired icon color
                             ),
-                          Spacer(), // Add some space between the icon and text
+                            SizedBox(width: 8),
+                            // Add some space between the icon and text
                             Text(
                               'Paris France',
-                              style: TextStyle(fontSize: 14,color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.white),
                             ),
                           ],
                         ),
-                      ),
+                      ],
+                    ),
                   ),
+                ),
+                Positioned(
+                  top: 30.0,
+                  left: 16.0,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.arrow_downward_outlined,
+                          // Replace with your desired icon
+                          color: Colors
+                              .white, // Replace with your desired icon color
+                        ),
+                        Spacer(),
+                        Icon(
+                          Icons.favorite_outline_outlined,
+                          // Replace with your desired icon
+                          color: Colors
+                              .white, // Replace with your desired icon color
+                        ),
+                        SizedBox(
+                          width: 30.0,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -135,6 +156,91 @@ class _MyHomePageState extends State<MyHomePage> {
                 return ListTile(
                   title: Container(
                     height: MediaQuery.of(context).size.height,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ImageRowWithRoundedCorners(),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          'Locally nicknamed "La dame de fer" (French for "Iron Lady"), it was constructed as the center piece of the 1889 Worlds Fair, and to crown the centennial anniversary of the French Revolution.',
+                          style: TextStyle(fontSize: 16.0),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          'READ MORE...',
+                          style: TextStyle(
+                              fontSize: 16.0, color: Colors.redAccent),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        VideoPlayerWithRoundedCorners(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Text(
+                          'TOP SIGHTS',
+                          style: TextStyle(
+                              fontSize: 20.0, color: Colors.redAccent),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(16.0),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            // Container background color
+                            borderRadius: BorderRadius.circular(
+                                16.0), // Border radius for rounded corners
+                          ),
+                          child: Row(
+                            children: [
+                              _buildRoundedImage(
+                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSm5rP5EYm5-83RRGjEDNt8xK-7pM4amuNCw&usqp=CAU'),
+                              SizedBox(
+                                width: 20.0,
+                              ),
+                              const Expanded(
+                                  child: Text(
+                                'Locally nicknamed centennial anniversary of the French Revolution.',
+                                style: TextStyle(fontSize: 16.0),
+                              )),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(16.0),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            // Container background color
+                            borderRadius: BorderRadius.circular(
+                                16.0), // Border radius for rounded corners
+                          ),
+                          child: Row(
+                            children: [
+                              _buildRoundedImage(
+                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSm5rP5EYm5-83RRGjEDNt8xK-7pM4amuNCw&usqp=CAU'),
+                              SizedBox(
+                                width: 20.0,
+                              ),
+                              Expanded(
+                                  child: const Text(
+                                'Locally nicknamed centennial anniversary of the French Revolution.',
+                                style: TextStyle(fontSize: 16.0),
+                              )),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -148,7 +254,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding:
                   const EdgeInsets.only(left: 30.0, right: 30.0, bottom: 20.0),
               child: Container(
-                padding: EdgeInsets.only(left: 20.0,right: 20.0),
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
                 decoration: BoxDecoration(
                   color: Colors.blue,
                   borderRadius: BorderRadius.circular(30),
@@ -173,7 +279,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.green, // Set the button background color
+                          primary:
+                              Colors.green, // Set the button background color
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
                                 20.0), // Set the button border radius
@@ -200,6 +307,19 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  Widget _buildRoundedImage(String imageUrl) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12.0),
+      // Border radius for individual images
+      child: Image.network(
+        imageUrl,
+        width: 80.0,
+        height: 80.0,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }
@@ -229,5 +349,98 @@ class CustomFloatingButton extends StatelessWidget {
         backgroundColor: backgroundColor,
       ),
     );
+  }
+}
+
+class ImageRowWithRoundedCorners extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white, // Container background color
+        borderRadius:
+            BorderRadius.circular(16.0), // Border radius for rounded corners
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildRoundedImage(
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSm5rP5EYm5-83RRGjEDNt8xK-7pM4amuNCw&usqp=CAU'),
+          Spacer(),
+          _buildRoundedImage(
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzSiQcA8RC6dZyCw342nGPoIKVp3JbawfEdw&usqp=CAU'),
+          Spacer(),
+          _buildRoundedImage(
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzSiQcA8RC6dZyCw342nGPoIKVp3JbawfEdw&usqp=CAU'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRoundedImage(String imageUrl) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12.0),
+      // Border radius for individual images
+      child: Image.network(
+        imageUrl,
+        width: 80.0,
+        height: 80.0,
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+}
+
+class VideoPlayerWithRoundedCorners extends StatefulWidget {
+  @override
+  _VideoPlayerWithRoundedCornersState createState() =>
+      _VideoPlayerWithRoundedCornersState();
+}
+
+class _VideoPlayerWithRoundedCornersState
+    extends State<VideoPlayerWithRoundedCorners> {
+  late VideoPlayerController _videoPlayerController;
+  late ChewieController _chewieController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Replace the video URL with your actual video URL
+    _videoPlayerController = VideoPlayerController.network(
+        'https://pixabay.com/videos/tower-eiffel-tower-france-fireworks-53848/');
+
+    _chewieController = ChewieController(
+      videoPlayerController: _videoPlayerController,
+      autoPlay: true,
+      looping: true,
+      aspectRatio: 16 / 9,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(
+        color: Colors.grey[200], // Container background color
+        borderRadius:
+            BorderRadius.circular(16.0), // Border radius for container
+      ),
+      padding: EdgeInsets.all(8.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12.0),
+        // Border radius for video player
+        child: Chewie(controller: _chewieController),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _videoPlayerController.dispose();
+    _chewieController.dispose();
+    super.dispose();
   }
 }
